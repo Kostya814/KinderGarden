@@ -13,6 +13,7 @@ namespace KinderGarden
         
        
         public DataBase()
+            
         {
             List<Kid> kids = new List<Kid>()//Дети 1 садика
             {

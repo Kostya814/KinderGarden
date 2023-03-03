@@ -12,10 +12,10 @@ namespace KinderGarden
 {
     partial class DatabaseKinds : Form
     {
-        Form1 f1; 
-        public DatabaseKinds(List<Kid> kinds,Form1 f)
+        Form1 f1;
+        public DatabaseKinds(List<Kid> kinds, Form1 f)
         {
-            
+
             InitializeComponent();
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             f1 = f;
@@ -34,7 +34,7 @@ namespace KinderGarden
 
                 throw;
             }
-            
+
 
         }
 

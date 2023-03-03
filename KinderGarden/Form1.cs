@@ -124,16 +124,16 @@ namespace KinderGarden
             int indexRows = dataGridView1.CurrentCell.RowIndex;
             int indexColumn = dataGridView1.CurrentCell.ColumnIndex;
             if (indexRows == -1 || data.kinderGarden.Count <= indexRows) return;
-            
 
-                switch (indexColumn)
-                {
-                    case 0:
-                        data.kinderGarden[indexRows].Name = dataGridView1.Rows[indexRows].Cells[indexColumn].Value.ToString();
-                        break;
-                }
 
-            
+            switch (indexColumn)
+            {
+                case 0:
+                    data.kinderGarden[indexRows].Name = dataGridView1.Rows[indexRows].Cells[indexColumn].Value.ToString();
+                    break;
+            }
+
+
 
         }
 
@@ -143,11 +143,17 @@ namespace KinderGarden
             data.kinderGarden.RemoveAt(indexDelRow);
         }
 
-        
+
 
         private void dataGridView1_UserAddedRow(object sender, DataGridViewRowEventArgs e)
         {
             MessageBox.Show("", "");
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            OtherData data = new OtherData(this);
+            data.Show();
         }
     }
 }

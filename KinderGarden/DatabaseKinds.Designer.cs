@@ -60,6 +60,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(800, 415);
             Controls.Add(pictureBox1);
             Controls.Add(dataGridView1);
