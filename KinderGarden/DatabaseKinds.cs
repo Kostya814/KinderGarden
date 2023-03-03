@@ -16,8 +16,23 @@ namespace KinderGarden
         {
             InitializeComponent();
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            dataGridView1.DataSource = kinds;
+                       
+            dataGridView1.Columns.Add("Column1", "Имя");
+            dataGridView1.Columns.Add("Column2", "Родитель");
+            dataGridView1.Columns.Add("Column3", "Возраст");
+            try
+            {
+                foreach (var i in kinds)
+                {
+                    dataGridView1.Rows.Add(i.Name, i.Parent, i.Age);
+                }
+            }
+            catch (Exception)
+            {
 
+                throw;
+            }
+            
 
         }
 

@@ -38,10 +38,14 @@ namespace KinderGarden
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             int index = dataGridView1.CurrentCell.RowIndex;
-            List<Kid> kids = data.kinderGarden[index].kids.ToList();
-            DatabaseKinds kids1 = new DatabaseKinds(kids);
-            kids1.Show();
-            this.Hide();
+            if (index == -1) 
+            {
+                List<Kid> kids = data.kinderGarden[index].kids.ToList();
+
+                DatabaseKinds kids1 = new DatabaseKinds(kids);
+                kids1.Show();
+                this.Hide();
+            }
 
         }
 
@@ -49,38 +53,80 @@ namespace KinderGarden
         {
             if (textBox1.Text.Length > 0)
             {
-                dataGridView1.DataSource = data.kinderGarden.Where(u => u.Name.ToLower().Contains(textBox1.Text.ToLower())).ToList();
+                var newData = data.kinderGarden.Where(u => u.Name.ToLower().Contains(textBox1.Text.ToLower())).ToList();
+                dataGridView1.Rows.Clear();
+                foreach (var i in newData)
+                {
+                    
+                    dataGridView1.Rows.Add(i.Name, i.City, i.CountKids);
+                }
+
+
             }
-            else dataGridView1.DataSource = data.kinderGarden;
+            else
+            {
+                dataGridView1.Rows.Clear();
+                foreach (var i in data.kinderGarden)
+                {
+                    dataGridView1.Rows.Add(i.Name, i.City, i.CountKids);
+                }
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = data.kinderGarden.OrderByDescending(u => u.CountKids).ToList();
+            var newData = data.kinderGarden.OrderByDescending(u => u.CountKids).ToList();
+            dataGridView1.Rows.Clear();
+            foreach (var i in newData)
+            {
+                dataGridView1.Rows.Add(i.Name, i.City, i.CountKids);
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             textBox1.Text = "";
-            dataGridView1.DataSource = data.kinderGarden;
+            dataGridView1.Rows.Clear();
+            foreach (var i in data.kinderGarden)
+            {
+                dataGridView1.Rows.Add(i.Name, i.City, i.CountKids);
+            }
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
             switch (comboBox1.SelectedIndex)
             {
                 case 0:
-                    dataGridView1.DataSource = data.kinderGarden.Where(u => u.City.Contains("Москва")).ToList();
+                    var newData = data.kinderGarden.Where(u => u.City.Contains("Москва")).ToList();
+                    dataGridView1.Rows.Clear();
+                    foreach (var i in newData)
+                    {
+
+                        dataGridView1.Rows.Add(i.Name, i.City, i.CountKids);
+                    }
                     break;
                 case 1:
-                    dataGridView1.DataSource = data.kinderGarden.Where(u => u.City.Contains("Санкт-Петербург")).ToList();
+                    var newData1 = data.kinderGarden.Where(u => u.City.Contains("Санкт-Петербург")).ToList();
+                    dataGridView1.Rows.Clear();
+                    foreach (var i in newData1)
+                    {
+
+                        dataGridView1.Rows.Add(i.Name, i.City, i.CountKids);
+                    }
                     break;
             }
         }
 
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            MessageBox.Show("Апчу","");
+            MessageBox.Show("Апчу", "");
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            
         }
     }
 }
