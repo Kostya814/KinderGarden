@@ -11,7 +11,8 @@ namespace KinderGarden
         private Random _rand = new Random();
         internal List<KinderGarden> kinderGarden { get; private set; }
         
-        public void Initialize()
+       
+        public DataBase()
         {
             List<Kid> kids = new List<Kid>()//Дети 1 садика
             {
@@ -32,8 +33,8 @@ namespace KinderGarden
             };
 
 
-            kinderGarden = new List<KinderGarden>() 
-            { 
+            kinderGarden = new List<KinderGarden>()
+            {
                 new KinderGarden(kids,new City("Москва","Россия"),"Солнышко"),
                 new KinderGarden(kids1,new City("Санкт-Петербург","Россия"),"Тормозок")
 

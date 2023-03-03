@@ -1,11 +1,11 @@
-using System.Collections.Generic;
-using System.Windows.Forms;
+using System;
 
 namespace KinderGarden
 {
     public partial class Form1 : Form
     {
         DataBase data = new DataBase();
+        int indexDelRow;
         public Form1()
         {
             InitializeComponent();
@@ -14,10 +14,13 @@ namespace KinderGarden
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            data.Initialize();
 
 
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridView1.Columns.Add("Column1", "Название");
+            dataGridView1.Columns.Add("Column2", "Город");
+            dataGridView1.Columns.Add("Column3", "Количество детей");
+
             fillData();
             comboBox1.Items.Add("Москва");
             comboBox1.Items.Add("Санкт-Петербург");
@@ -25,9 +28,7 @@ namespace KinderGarden
         }
         private void fillData()
         {
-            dataGridView1.Columns.Add("Column1", "Название");
-            dataGridView1.Columns.Add("Column2", "Город");
-            dataGridView1.Columns.Add("Column3", "Количество детей");
+
             foreach (var i in data.kinderGarden)
             {
                 dataGridView1.Rows.Add(i.Name, i.City, i.CountKids);
@@ -37,15 +38,14 @@ namespace KinderGarden
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            int index = dataGridView1.CurrentCell.RowIndex;
-            if (index == -1) 
-            {
-                List<Kid> kids = data.kinderGarden[index].kids.ToList();
+            int index = e.RowIndex;
+            if (index == -1 || data.kinderGarden.Count <= index) return;
+            List<Kid> kids = data.kinderGarden[index].kids.ToList();
 
-                DatabaseKinds kids1 = new DatabaseKinds(kids);
-                kids1.Show();
-                this.Hide();
-            }
+            DatabaseKinds kids1 = new DatabaseKinds(kids, this);
+            kids1.Show();
+            this.Hide();
+
 
         }
 
@@ -57,7 +57,7 @@ namespace KinderGarden
                 dataGridView1.Rows.Clear();
                 foreach (var i in newData)
                 {
-                    
+
                     dataGridView1.Rows.Add(i.Name, i.City, i.CountKids);
                 }
 
@@ -95,7 +95,7 @@ namespace KinderGarden
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
             switch (comboBox1.SelectedIndex)
             {
                 case 0:
@@ -121,12 +121,33 @@ namespace KinderGarden
 
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            MessageBox.Show("Апчу", "");
+            int indexRows = dataGridView1.CurrentCell.RowIndex;
+            int indexColumn = dataGridView1.CurrentCell.ColumnIndex;
+            if (indexRows == -1 || data.kinderGarden.Count <= indexRows) return;
+            
+
+                switch (indexColumn)
+                {
+                    case 0:
+                        data.kinderGarden[indexRows].Name = dataGridView1.Rows[indexRows].Cells[indexColumn].Value.ToString();
+                        break;
+                }
+
+            
+
         }
 
-        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        private void dataGridView1_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
-            
+            indexDelRow = e.Row.Index;
+            data.kinderGarden.RemoveAt(indexDelRow);
+        }
+
+        
+
+        private void dataGridView1_UserAddedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            MessageBox.Show("", "");
         }
     }
 }

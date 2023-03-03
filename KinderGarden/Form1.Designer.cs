@@ -51,6 +51,8 @@
             dataGridView1.TabIndex = 0;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
             dataGridView1.CellEndEdit += dataGridView1_CellEndEdit;
+            dataGridView1.UserAddedRow += dataGridView1_UserAddedRow;
+            dataGridView1.UserDeletingRow += dataGridView1_UserDeletingRow;
             // 
             // button1
             // 
@@ -117,7 +119,6 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form1";
             Text = "Детский сад";
-            FormClosed += Form1_FormClosed;
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);

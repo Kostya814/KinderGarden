@@ -11,12 +11,15 @@ namespace KinderGarden
         private Parent _parent;
         public Kid(string name, int age, Sex sex,Parent parent) : base(name, age, sex) 
         {
-            
             _parent = parent;
         }
         public string Parent
         { 
             get => _parent.Name;
+        }
+        public Parent GetParent() 
+        { 
+            return _parent;
         }
     }
 }
