@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace KinderGarden
@@ -14,10 +15,23 @@ namespace KinderGarden
         private void Form1_Load(object sender, EventArgs e)
         {
             data.Initialize();
-            dataGridView1.DataSource = data.kinderGarden;
+
+
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            fillData();
             comboBox1.Items.Add("Москва");
             comboBox1.Items.Add("Санкт-Петербург");
+
+        }
+        private void fillData()
+        {
+            dataGridView1.Columns.Add("Column1", "Название");
+            dataGridView1.Columns.Add("Column2", "Город");
+            dataGridView1.Columns.Add("Column3", "Количество детей");
+            foreach (var i in data.kinderGarden)
+            {
+                dataGridView1.Rows.Add(i.Name, i.City, i.CountKids);
+            }
 
         }
 
@@ -62,6 +76,11 @@ namespace KinderGarden
                     dataGridView1.DataSource = data.kinderGarden.Where(u => u.City.Contains("Санкт-Петербург")).ToList();
                     break;
             }
+        }
+
+        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            MessageBox.Show("Апчу","");
         }
     }
 }

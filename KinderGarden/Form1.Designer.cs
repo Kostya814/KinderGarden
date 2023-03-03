@@ -50,6 +50,7 @@
             dataGridView1.Size = new Size(708, 218);
             dataGridView1.TabIndex = 0;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
+            dataGridView1.CellEndEdit += dataGridView1_CellEndEdit;
             // 
             // button1
             // 
