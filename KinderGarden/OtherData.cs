@@ -15,7 +15,7 @@ namespace KinderGarden
 
             var par2 = par1.Select(u => u.Select(u => u.Parent)).ToList();
 
-            
+
             dataGridView1.DataSource = data;
             int a = par1.Count;
 
