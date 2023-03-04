@@ -10,14 +10,18 @@ namespace KinderGarden
     {
         private string _name;
         private string _country;
-        public City(string name, string country) 
+        public City(string name) 
         {
             _name = name;
-            _country = country;
+            _country = "Россия";
         }
         public string Name
         { 
             get => _name;
+        }
+        public string Country
+        { 
+            get => _country; 
         }
     }
 }

@@ -13,13 +13,13 @@ namespace KinderGarden
         {
             _parent = parent;
         }
-        public string Parent
+        public Parent Parent
         { 
-            get => _parent.Name;
+            get => _parent;
         }
-        public Parent GetParent() 
+        public string GetParent() 
         { 
-            return _parent;
+            return _parent.Name;
         }
     }
 }

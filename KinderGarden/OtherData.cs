@@ -1,23 +1,50 @@
-﻿using System.Data;
-
-namespace KinderGarden
+﻿namespace KinderGarden
 {
     public partial class OtherData : Form
     {
         Form1 f1;
         DataBase data = new DataBase();
-        public OtherData(Form1 f1)
+        public OtherData(Form1 f1, bool CityorParents)
         {
+            List<Parent> parents = new List<Parent>();
+            List<Kid> kids = new List<Kid>();
             InitializeComponent();
             this.f1 = f1;
-            var par1 = data.kinderGarden.Select(u => u.kids).ToList();
-            dataGridView1.Columns.Add("Column1", "Название");
-
-            var par2 = par1.Select(u => u.Select(u => u.Parent)).ToList();
+            if (CityorParents)
+            {
 
 
-            dataGridView1.DataSource = data;
-            int a = par1.Count;
+
+
+                foreach (var u in data.kinderGarden)
+                {
+                    foreach (Kid kid in u.kids) kids.Add(kid);
+
+                }
+                foreach (Kid kid in kids)
+                {
+
+                    parents.Add(kid.Parent);
+
+                }
+                dataGridView1.DataSource = parents;
+            }
+            else
+            {
+                List<City> citys = new List<City>();
+                foreach (var u in data.kinderGarden)
+                {
+                    citys.Add(u.City1);
+                }
+                dataGridView1.DataSource = citys;
+            }
+
+
+
+
+
+
+
 
         }
     }

@@ -37,6 +37,11 @@
             label1 = new Label();
             button3 = new Button();
             button4 = new Button();
+            textBox2 = new TextBox();
+            textBox3 = new TextBox();
+            label2 = new Label();
+            label3 = new Label();
+            button5 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -114,6 +119,7 @@
             button3.TabIndex = 5;
             button3.Text = "Вывести Таблицу Городов";
             button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // button4
             // 
@@ -126,6 +132,49 @@
             button4.UseVisualStyleBackColor = true;
             button4.Click += button4_Click;
             // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(42, 465);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(125, 27);
+            textBox2.TabIndex = 6;
+            // 
+            // textBox3
+            // 
+            textBox3.Location = new Point(246, 465);
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(125, 27);
+            textBox3.TabIndex = 6;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(42, 442);
+            label2.Name = "label2";
+            label2.Size = new Size(128, 20);
+            label2.TabIndex = 7;
+            label2.Text = "Название садика";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(283, 442);
+            label3.Name = "label3";
+            label3.Size = new Size(51, 20);
+            label3.TabIndex = 7;
+            label3.Text = "Город";
+            // 
+            // button5
+            // 
+            button5.FlatStyle = FlatStyle.Flat;
+            button5.Location = new Point(158, 516);
+            button5.Name = "button5";
+            button5.Size = new Size(94, 56);
+            button5.TabIndex = 8;
+            button5.Text = "Сохранить в базу";
+            button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -133,7 +182,12 @@
             BackColor = SystemColors.ActiveCaption;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Center;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(817, 584);
+            Controls.Add(button5);
+            Controls.Add(label3);
+            Controls.Add(label2);
+            Controls.Add(textBox3);
+            Controls.Add(textBox2);
             Controls.Add(button4);
             Controls.Add(button3);
             Controls.Add(label1);
@@ -161,5 +215,10 @@
         private Label label1;
         private Button button3;
         private Button button4;
+        private TextBox textBox2;
+        private TextBox textBox3;
+        private Label label2;
+        private Label label3;
+        private Button button5;
     }
 }

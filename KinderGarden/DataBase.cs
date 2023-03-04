@@ -36,8 +36,8 @@ namespace KinderGarden
 
             kinderGarden = new List<KinderGarden>()
             {
-                new KinderGarden(kids,new City("Москва","Россия"),"Солнышко"),
-                new KinderGarden(kids1,new City("Санкт-Петербург","Россия"),"Тормозок")
+                new KinderGarden(kids,new City("Москва"),"Солнышко"),
+                new KinderGarden(kids1,new City("Санкт-Петербург"),"Тормозок")
 
             };
         }

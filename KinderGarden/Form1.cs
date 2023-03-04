@@ -140,6 +140,7 @@ namespace KinderGarden
         private void dataGridView1_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
             indexDelRow = e.Row.Index;
+            if (indexDelRow == -1) return;
             data.kinderGarden.RemoveAt(indexDelRow);
         }
 
@@ -152,8 +153,25 @@ namespace KinderGarden
 
         private void button4_Click(object sender, EventArgs e)
         {
-            OtherData data = new OtherData(this);
+
+            OtherData data = new OtherData(this, true);
             data.Show();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            OtherData data = new OtherData(this, false);
+            data.Show();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            
+            List<Kid> kids= new List<Kid>();
+            string name = textBox2.Text;
+            string city = textBox3.Text;
+            data.kinderGarden.Add(new KinderGarden(kids, new City(city), name));
+            button2_Click(sender, e);
         }
     }
 }

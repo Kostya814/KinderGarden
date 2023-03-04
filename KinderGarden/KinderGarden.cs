@@ -26,10 +26,8 @@ namespace KinderGarden
         {
             get => _city.Name;
         }
-        public void SetCity(string Name)
-        {
-            _city = new City("Name","Россия");
-        }
+        public City City1 { get => _city; }
+        
         public int CountKids
         { 
             get => _kids.Count;
